@@ -1,0 +1,107 @@
+Controller Capabilities,CAP,0,+8
+,reserved,,58,63
+,Controller Memory Buffer Supported,CMBS,57,+1
+,Persistent Memory Region Supported,PMRS,56,+1
+,Memory Page Size Maximum,MPSMAX,52,55,formula,2^(12+MPSMAX),bytes
+,Memory Page Size Minimum,MPSMIN,48,51,formula,2^(12+MPSMIN),bytes
+,reserved,,46,47
+,Boot Partition Support,BPS,45,+1
+,NVM Command Set Supported,,37,+1
+,reserved,,38,43
+,No IO Command Set Supported,,44,+1
+,NVM Subsystem Reset Supported,NSSRS,36,+1
+,Doorbell Stride,DSTRD,32,35,formula,2^(2+DSTRD),bytes
+,Timeout,TO,24,31,formula,500*TO,msec
+,reserved,,19,23
+,Arbitration Mechanism Supported,AMS,17,18
+,Contiguous Queues Required,CQR,16,+1
+,Maximum Queue Entries Supported,MQES,0,15,formula,1+MQES,queues
+
+Version,VS,8,+4
+,Major Version Number,MJR,16,31
+,Minor Version Number,MNR,8,15
+,reserved,,0,7
+
+Interrupt Mask Set,INTMS,0xC,+4
+,Interrupt Vector Mask Set,IVMS,0,31
+
+Interrupt Mask Clear,INTMC,0x10,+4
+,Interrupt Vector Mask Clear,IVMC,0,31
+
+Controller Configuration,CC,0x14,+4
+,reserved,,24,31
+,IO Complreion Queue Entry Size,ICQES,20,23,formula,2^ICQES,bytes
+,IO Submission Queue Entry Size,IOSQES,16,19,formula,2^IOSQES,bytes
+,Shutdown Notification,SHN,14,15,table,0,No Notification,1,Normal shutdown notification,2,Abrupt shutdown notification,3,reserved
+,Arbitration Mechanism Selected,AMS,11,13,table,0,Round Robin,1,Weighted Round Robin with Urgent Priority Class,7,Vendor Specific
+,Memory Page Size,MPS,7,10,formula,2^(12+MPS),bytes
+,IO Command Set Selected,,4,6,table,0,NVM Command Set,7,Admin Command Set
+,reserved,,1,3
+,Enable,EN,0,+1
+
+Reserved,,0x18,+4
+
+Controller Status,CSTS,0x1C,+4
+,reserved,,6,31
+,Processing Paused,PP,5,+1
+,NVM Subsystem Reset Occurred,NSSRO,4,+1
+,Shutdown Status,SHST,2,3,table,0,Normal operation,1,Shutdown processing occurring,2,Shutdown processing complete,3,reserved
+,Controller Fatal Status,CFS,1,+1
+,Ready,RDY,0,+1
+
+NVM Subsystem Reset,NSSR,0x20,+4
+,NVM Subsystem Reset Control,NSSRC,0,31
+
+Admin Queue Attributes,AQA,0x24,+4
+,reserved,,28,31
+,Admin Completion Queue Size,ACQS,16,27,formula,1+ACQS,entries
+,reserved,,12,15
+,Admin Submission Queue Size,ASQS,0,11,formula,1+ASQS,entries
+
+Admin Submission Queue Base Address,ASQ,0x28,+8
+,Admin Submission Queue Base,ASQB,12,63,formula,ASQB<<12
+,reserved,,0,11
+
+Admin Completion Queue Base Address,ACQ,0x30,+8
+,Admin Completion Queue Base,ACQB,12,63,formula,ACQB<<12
+
+Controller Memory Buffer Location,CMBLOC,0x38,+4
+,Offset,OFST,12,31,formula,CMBSZ*OFST,bytes
+,reserved,,9,11
+,CMB Queue Dword Alignment,CQDA,8,+1
+,CMB Data Metadata Mixed Memory Support,CDMMMS,7,+1
+,CMB Data Pointer and Command Independent Locations Support,CDPCILS,6,+1
+,CMB Data Pointer Mixed Locations Support,CDPMLS,5,+1
+,CMB Queue Physically Discontiguous Support,CQPDS,4,+1
+,CMD Queeu Mixed Memory Support,CQMMS,3,+1
+,Base Indicator Register,BIR,0,2
+
+Controller Memory Buffer Size,CMBSZ,0x3C,+4
+,Size,SZ,12,31
+,Size Units,SZU,8,11,table,0,4 KiB,1,64 KiB,2,1 MiB,3, 16 MiB,4,256 MiB,5,4 GiB,6,64 GiB
+,reserved,,5,7
+,Write Data Support,WDS,4,+1
+,Read Data Support,RDS,3,+1
+,PRP SGL List Supports,LISTS,2,+1
+,Completion Queue Support,CQS,1,+1
+,Submission Queue Support,SQS,0,+1
+
+Boot Partition Info,BPINFO,0x40,+4
+,Active Boot Partition ID,ABPID,31,+1
+,reserved,,26,30
+,Boot Read Status,BRS,24,25,table,0,No Boot Partition read operation requested,1,Boot Partition read in progress,2,Boot Partition read completed successfully,3,Error completing Boot Partition read
+,reserved,,15,23
+,Boot Partition Size,BPSZ,0,14,formula,BPSZ*128,KiB
+
+Boot Partition Read Select,BPRS,0x44,+4
+,Boot Partition Identifier,BPID,31,+1
+,reserved,,30,+1
+,Boot Partition Read Offset,BPROF,10,29,formula,BPROF*4,KiB
+,Boot Partition Read Size,BPRSZ,0,9,formula,BPRSZ*4,KiB
+
+Boot Partition Memory Buffer Location,BPMBL,0x48,+8
+,Boot Partition Memory Base Address,BMBBA,12,63,formula,BMBBA<<12,bytes
+,reserved,,0,11
+
+
+
